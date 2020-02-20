@@ -2,10 +2,10 @@ import java.util.ArrayList;
 
 class Library {
         
-    int ID;
-    int signupDays;
-    int shipPerDay;
-    ArrayList<Book> books;
+    private int ID;
+    private int signupDays;
+    private int shipPerDay;
+    private ArrayList<Book> books;
 
     Library(int ID, int signupDays, int shipPerDay, ArrayList<Book> books){
         this.ID = ID;

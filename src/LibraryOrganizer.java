@@ -1,4 +1,3 @@
-
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.ArrayList;
@@ -65,12 +64,15 @@ public class LibraryOrganizer {
 
 
     // Sorts list of books a library will send
-    void sortBooks(Library input){
+    ArrayList<Book> sortBooks(Library input){
+
         Collections.sort(input.getBooks(), new Comparator<Book>(){
             public int compare(Book s1, Book s2) {
                 return Math.max(s1.getID(),s2.getID());
             }
         });
+
+        return input.getBooks();
     }
 
     //public ArrayList<Book> sortBooks(ArrayList<Book> input){
