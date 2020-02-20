@@ -1,4 +1,8 @@
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+
+import static sun.swing.MenuItemLayoutHelper.max;
 
 public class LibraryOrganizer {
     class Library{
@@ -103,12 +107,20 @@ public class LibraryOrganizer {
 
     }
 
-    public void scanBooks(){
+    // Override sort method
 
-        for(int i = 0; i < libraries.get(i).getShipPerDay(); i++){
-            //return a list of
-        }
+
+    // Sorts list of books a library will send
+    void sortBooks(Library input){
+        Collections.sort(input.getBooks(), new Comparator<Book>(){
+            public int compare(Book s1, Book s2) {
+                return Math.max(s1.getID(),s2.getID());
+            }
+        });
     }
+
+
+
 
     //public ArrayList<Book> sortBooks(ArrayList<Book> input){
 
