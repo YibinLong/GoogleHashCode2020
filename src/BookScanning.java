@@ -30,8 +30,15 @@ public class BookScanning {
 
         for(int i = 0; i < numOfLibraries; i++){
             libraries.add(getLibInfo(i));
+
+            System.out.println("lib id: " + libraries.get(i).getID());
+            System.out.println("first book: " + libraries.get(i).getBooks().get(0).getID());
+            System.out.println("second book: " + libraries.get(i).getBooks().get(1).getID());
+            System.out.println("third book: " + libraries.get(i).getBooks().get(2).getID());
+
         }
 
+        
 
 
         LibraryOrganizer libOrg = new LibraryOrganizer(days, books, libraries);
@@ -96,9 +103,9 @@ public class BookScanning {
     static ArrayList<Book> getBooks(int line){
         Scanner result = readLine();
         
-        // for(int i = 0; i < line; i++){
-        //     System.out.println("skipped a line: " + result.nextLine());            
-        // }
+        for(int i = 0; i < line; i++){
+             result.nextLine();            
+        }
 
         String booksLine = result.nextLine();
         String[] booksInfo = booksLine.split(" ");
@@ -122,9 +129,9 @@ public class BookScanning {
 
         ID = (ID + 1)*2;
 
-        // for(int i = 0; i < ID; i++){
-        //     System.out.println("skipped a line: " + result.nextLine());            
-        // }
+        for(int i = 0; i < ID; i++){
+            result.nextLine();            
+        }
       
         String libLine = result.nextLine();
         String[] libInfo = libLine.split(" ");
