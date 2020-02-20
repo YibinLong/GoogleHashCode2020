@@ -1,4 +1,7 @@
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -9,10 +12,16 @@ public class BookScanning {
     static int[] bookScore;
     static ArrayList<ArrayList<Integer>> libraries = new ArrayList<ArrayList<Integer>>();
 
-    public static void main(String[] args) {
+
+    public static void main(String[] args) throws FileNotFoundException{
         parse();
 
+        PrintWriter writer = new PrintWriter("resultFile.txt");
+        writer.println(libNumOverall);
 
+        //writer.println("The first line");
+        //writer.println("The second line");
+        writer.close();
 
 
     }
@@ -75,7 +84,16 @@ public class BookScanning {
             }
             counter++;
         }
+        //System.out.println(libraries);
 
 
+    }
+
+    public static void determineLibraryOrder(){
+        int count = 0;
+        for(int i = 0; i < libraries.size(); i ++){
+            if(i % 2 == 0){
+            }
+        }
     }
 }
