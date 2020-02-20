@@ -1,20 +1,17 @@
-import org.omg.CORBA.INTERNAL;
-
-import java.awt.print.Book;
-import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileReader;
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class BookScanning {
-    static int bookNum;
-    static int libNum;
-    static int dayNum;
+    static int bookNumOverall;
+    static int libNumOverall;
+    static int dayNumOverall;
     static int[] bookScore;
+    static ArrayList<ArrayList<Integer>> libraries = new ArrayList<ArrayList<Integer>>();
 
     public static void main(String[] args) {
         parse();
+
 
 
 
@@ -45,12 +42,14 @@ public class BookScanning {
     public static void parse(){
         Scanner result = readLine();
 
+        //parse first line (books, libraries, days)
         String firstLine = result.nextLine();
         String[] firstLineSplit = firstLine.split(" ");
-        bookNum = Integer.parseInt(firstLineSplit[0]);
-        libNum = Integer.parseInt(firstLineSplit[1]);
-        dayNum = Integer.parseInt(firstLineSplit[2]);
+        bookNumOverall = Integer.parseInt(firstLineSplit[0]);
+        libNumOverall = Integer.parseInt(firstLineSplit[1]);
+        dayNumOverall = Integer.parseInt(firstLineSplit[2]);
 
+        //parse 2nd line (scores of books)
         String bookScoreResult = result.nextLine();
         String[] bookScoresSplit = bookScoreResult.split(" ");
         bookScore = new int[bookScoresSplit.length];
@@ -59,6 +58,24 @@ public class BookScanning {
             bookScore[count] = Integer.parseInt(s);
             count++;
         }
+
+        //parse in sets of 2 lines: 1st line is library's book num,
+        int counter = 0;
+        while(result.hasNextLine()){
+            String[] libDetails = result.nextLine().split(" ");
+            for (int i = 0; i < libDetails.length; i++){
+                libraries.add(new ArrayList<Integer>());
+                libraries.get(counter).add(Integer.parseInt(libDetails[i]));
+            }
+            counter++;
+            String[] libBooks = result.nextLine().split(" ");
+            for (int i = 0; i < libBooks.length; i++){
+                libraries.add(new ArrayList<Integer>());
+                libraries.get(counter).add(Integer.parseInt(libBooks[i]));
+            }
+            counter++;
+        }
+
 
     }
 }
