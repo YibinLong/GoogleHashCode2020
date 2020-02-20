@@ -1,8 +1,6 @@
 import java.util.ArrayList;
 
 public class LibraryOrganizer {
-
-
     class Library{
         int ID;
         int signupDays;
@@ -55,6 +53,17 @@ public class LibraryOrganizer {
 
     void organizeSignupDays(){
         
+    }
+
+    public void scanBooks(){
+
+        for(int i = 0; i < libraries.get(i).getShipPerDay(); i++){
+            //return a list of 
+        }
+    }
+
+    public ArrayList<Book> sortBooks(ArrayList<Book> input){
+
     }
 
 

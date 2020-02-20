@@ -91,9 +91,9 @@ public class BookScanning {
 
     public static void determineLibraryOrder(){
         int count = 0;
-        for(int i = 0; i < libraries.size(); i ++){
-            if(i % 2 == 0){
-            }
+        for(int i = 0; i < libraries.size(); i += 2){
+
         }
     }
+
 }
