@@ -19,6 +19,23 @@ public class BookScanning {
         PrintWriter writer = new PrintWriter("resultFile.txt");
         writer.println(libNumOverall);
 
+        int[] info = basicInfo();
+
+        ArrayList<Book> allBooks = getBooks(1); // Go to line 1 for all books
+        ArrayList<Library> libraries = new ArrayList<Library>();
+
+        int books = info[0];
+        int numOfLibraries = info[1];
+        int days =  info[2];
+
+        for(int i = 0; i < numOfLibraries; i++){
+            libraries.add(getLibInfo(i));
+        }
+
+
+
+        LibraryOrganizer libOrg = new LibraryOrganizer(days, books, libraries);
+
         //writer.println("The first line");
         //writer.println("The second line");
         writer.close();
@@ -30,7 +47,7 @@ public class BookScanning {
         try {
             Scanner input = new Scanner(System.in);
 
-            File file = new File("a_example");
+            File file = new File("../a_example");
 
             input = new Scanner(file);
 
@@ -48,6 +65,79 @@ public class BookScanning {
         }
         return null;
     }
+
+    // Array w/ 3 indexes: 
+    // 0: Number of books
+    // 1: Number of libraries
+    // 2: Number of days for scanning
+    static int[] basicInfo(){
+        Scanner result = readLine();
+        String firstLine = result.nextLine();
+
+
+        String[] stringInfo = firstLine.split(" ");
+        int[] info = new int[stringInfo.length];
+
+        for(int i = 0; i < info.length; i++){
+            info[i] = Integer.parseInt(stringInfo[i]);
+        }
+
+        result.close();
+
+        System.out.println("Books: " + info[0]);
+        System.out.println("Libraries: " + info[1]);
+        System.out.println("Days: " + info[2]);
+
+        return info;
+
+    }
+
+    // Line determine which line to go to
+    static ArrayList<Book> getBooks(int line){
+        Scanner result = readLine();
+        
+        // for(int i = 0; i < line; i++){
+        //     System.out.println("skipped a line: " + result.nextLine());            
+        // }
+
+        String booksLine = result.nextLine();
+        String[] booksInfo = booksLine.split(" ");
+
+        ArrayList<Book> books = new ArrayList<Book>();
+
+        for(int i = 0; i < booksInfo.length; i++){
+            books.add(new Book(Integer.parseInt(booksInfo[i])));
+        }
+
+        result.close();
+
+        return books;  
+    }
+
+    static Library getLibInfo(int ID){
+        Scanner result = readLine();
+
+        // ID determines line to read
+        int libID = ID;
+
+        ID = (ID + 1)*2;
+
+        // for(int i = 0; i < ID; i++){
+        //     System.out.println("skipped a line: " + result.nextLine());            
+        // }
+      
+        String libLine = result.nextLine();
+        String[] libInfo = libLine.split(" ");
+
+        int numOfSignupDays = Integer.parseInt(libInfo[1]);
+        int numOfBooksPerDay = Integer.parseInt(libInfo[2]);
+
+        ArrayList<Book> libBooks = getBooks(ID + 1);
+            
+        Library newLib = new Library(libID, numOfSignupDays, numOfBooksPerDay, libBooks);
+        return newLib;
+    }
+
     public static void parse(){
         Scanner result = readLine();
 
@@ -97,3 +187,4 @@ public class BookScanning {
     }
 
 }
+
