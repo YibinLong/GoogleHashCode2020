@@ -4,14 +4,17 @@ public class LibraryOrganizer {
 
 
     class Library{
+        
         int ID;
         int signupDays;
         int shipPerDay;
+        ArrayList<Book> books;
 
-        Library(int ID, int signupDays, int shipPerDay){
+        Library(int ID, int signupDays, int shipPerDay, ArrayList<Book> books){
             this.ID = ID;
             this.signupDays = signupDays;
             this.shipPerDay = shipPerDay;
+            this.books = books;
         }
 
         int getID(){
@@ -24,6 +27,10 @@ public class LibraryOrganizer {
 
         int getShipPerDay(){
             return this.shipPerDay;
+        }
+
+        ArrayList<Book> getBooks(){
+            return books;
         }
 
     }
@@ -42,7 +49,6 @@ public class LibraryOrganizer {
     }
 
     int days;
-
     ArrayList<Library> libraries;
     ArrayList<Book> books;
 
@@ -53,10 +59,51 @@ public class LibraryOrganizer {
         this.books = books;
     }
 
-    void organizeSignupDays(){
-        
+    // Return an array of library ID's
+    // Organized by order of signup by ascending signup length
+    // Break ties by putting libraries that can ship more books per day first
+    int[] organizeSignupDays(){
+        int numOfLibs = this.libraries.size();
+
+        int[] signUpOrder = new int[numOfLibs];
+
+        for(int i = 0; i < numOfLibs; i++){
+            
+            int minSignupDays = libraries.get(i).getSignupDays();
+            int maxShipments = libraries.get(i).getShipPerDay();
+            int position = i;            
+
+            for(int j = i; j < numOfLibs; j++){
+
+
+                if (libraries.get(j).getSignupDays() < minSignupDays)
+                {
+                    minSignupDays = libraries.get(i).getSignupDays();
+                    position = j;
+                }
+                else if (libraries.get(j).getSignupDays() == minSignupDays)
+                {
+                    if (libraries.get(j).getShipPerDay() > maxShipments)
+                    {
+                        minSignupDays = libraries.get(j).getSignupDays();
+                        position = j;
+                    }
+                }
+            }
+
+
+            Library temp = libraries.get(i);
+
+            libraries.set(i, libraries.get(position));
+            libraries.set(position, temp);
+            
+        }
+
+        for(int i = 0; i < libraries.size(); i++){
+            signUpOrder[i] = libraries.get(i).getID();
+        }
+
+        return signUpOrder;
+
     }
-
-
-
 }
