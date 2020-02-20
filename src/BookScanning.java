@@ -13,7 +13,7 @@ public class BookScanning {
     static ArrayList<ArrayList<Integer>> libraries = new ArrayList<ArrayList<Integer>>();
 
     public static void main(String[] args) throws FileNotFoundException {
-        parse();
+        //parse();
 
         
         int[] info = basicInfo();
@@ -79,8 +79,8 @@ public class BookScanning {
         try {
             Scanner input = new Scanner(System.in);
 
-            File file = new File("../a_example");
-
+            // Change as nessessary
+            File file = new File("b");
             input = new Scanner(file);
 
             return input;
