@@ -9,10 +9,12 @@ public class BookScanning {
     static int[] bookScore;
     static ArrayList<ArrayList<Integer>> libraries = new ArrayList<ArrayList<Integer>>();
 
+    static 
+
     public static void main(String[] args) {
         parse();
 
-
+        for()
 
 
     }
@@ -75,6 +77,7 @@ public class BookScanning {
             }
             counter++;
         }
+        System.out.println(libraries);
 
 
     }
