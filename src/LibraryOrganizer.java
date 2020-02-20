@@ -72,19 +72,6 @@ public class LibraryOrganizer {
             int position = i;            
 
             for(int j = i; j < numOfLibs; j++){
-
-    public void scanBooks(){
-
-        for(int i = 0; i < libraries.get(i).getShipPerDay(); i++){
-            //return a list of 
-        }
-    }
-
-    public ArrayList<Book> sortBooks(ArrayList<Book> input){
-
-    }
-
-
                 if (libraries.get(j).getSignupDays() < minSignupDays)
                 {
                     minSignupDays = libraries.get(i).getSignupDays();
@@ -113,6 +100,17 @@ public class LibraryOrganizer {
         }
 
         return signUpOrder;
+
+    }
+
+    public void scanBooks(){
+
+        for(int i = 0; i < libraries.get(i).getShipPerDay(); i++){
+            //return a list of
+        }
+    }
+
+    public ArrayList<Book> sortBooks(ArrayList<Book> input){
 
     }
 }
