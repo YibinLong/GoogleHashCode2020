@@ -90,11 +90,6 @@ public class BookScanning {
 
     }
 
-    public
 
-    public static String libraryProcess(LibraryOrganizer.Library lib){
-
-
-    }
 
 }
