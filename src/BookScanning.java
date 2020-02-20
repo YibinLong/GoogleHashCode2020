@@ -17,6 +17,8 @@ public class BookScanning {
         parse();
 
         PrintWriter writer = new PrintWriter("resultFile.txt");
+        writer.println(libNumOverall);
+
         //writer.println("The first line");
         //writer.println("The second line");
         writer.close();
@@ -87,7 +89,11 @@ public class BookScanning {
 
     }
 
-    public static void determineLibraries(){
-
+    public static void determineLibraryOrder(){
+        int count = 0;
+        for(int i = 0; i < libraries.size(); i ++){
+            if(i % 2 == 0){
+            }
+        }
     }
 }
