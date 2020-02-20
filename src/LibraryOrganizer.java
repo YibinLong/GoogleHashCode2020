@@ -1,64 +1,19 @@
-import java.util.ArrayList;
+
 import java.util.Collections;
 import java.util.Comparator;
-
+import java.util.ArrayList;
 import static sun.swing.MenuItemLayoutHelper.max;
 
 public class LibraryOrganizer {
-    class Library{
-        
-        int ID;
-        int signupDays;
-        int shipPerDay;
-        ArrayList<Book> books;
-
-        Library(int ID, int signupDays, int shipPerDay, ArrayList<Book> books){
-            this.ID = ID;
-            this.signupDays = signupDays;
-            this.shipPerDay = shipPerDay;
-            this.books = books;
-        }
-
-        int getID(){
-            return this.ID;
-        }
-
-        int getSignupDays(){
-            return this.signupDays;
-        }
-
-        int getShipPerDay(){
-            return this.shipPerDay;
-        }
-
-        ArrayList<Book> getBooks(){
-            return books;
-        }
-
-    }
-
-    class Book{
-        int ID;
-        
-        Book(int ID){
-            this.ID = ID;
-        }
-
-        int getID(){
-            return this.ID;
-        }
-
-    }
-
+   
     int days;
+    int books;
     ArrayList<Library> libraries;
-    ArrayList<Book> books;
-
-
-    LibraryOrganizer(int days, ArrayList<Library> libraries, ArrayList<Book> books){
+    
+    LibraryOrganizer(int days, int books, ArrayList<Library> libraries){
         this.days = days;
-        this.libraries = libraries;
         this.books = books;
+        this.libraries = libraries;
     }
 
     // Return an array of library ID's
