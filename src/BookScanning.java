@@ -179,11 +179,9 @@ public class BookScanning {
 
     }
 
-    public static void determineLibraryOrder(){
-        int count = 0;
-        for(int i = 0; i < libraries.size(); i += 2){
+    public static String libraryProcess(Library lib){
 
-        }
+        return null;
     }
 
 }
