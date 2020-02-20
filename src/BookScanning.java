@@ -10,17 +10,26 @@ public class BookScanning {
     static int libNumOverall;
     static int dayNumOverall;
     static int[] bookScore;
+    
+    static String name;
+
     static ArrayList<ArrayList<Integer>> libraries = new ArrayList<ArrayList<Integer>>();
 
     public static void main(String[] args) throws FileNotFoundException {
         //parse();
-
         
+        Scanner input = new Scanner(System.in);
+        System.out.print("Enter a name: ");
+        name = input.next();
+
         int[] info = basicInfo();
 
         ArrayList<Book> allBooks = getBooks(1); // Go to line 1 for all books
-        ArrayList<Library> libraries = new ArrayList<Library>();
+        System.out.println("Got all " + info[0] + " books");
 
+        ArrayList<Library> libraries = new ArrayList<Library>();
+        System.out.println("Got all " + info[1] + " libraries");        
+        
         int books = info[0];
         int numOfLibraries = info[1];
         int days = info[2];
@@ -28,21 +37,25 @@ public class BookScanning {
         for (int i = 0; i < numOfLibraries; i++) {
             libraries.add(getLibInfo(i));
 
+            System.out.println(i + " out of " + numOfLibraries + " finished processing");           
+
             // System.out.println("lib id: " + libraries.get(i).getID());
             // System.out.println("first book: " + libraries.get(i).getBooks().get(0).getID());
             // System.out.println("second book: " + libraries.get(i).getBooks().get(1).getID());
             // System.out.println("third book: " + libraries.get(i).getBooks().get(2).getID());
 
         }
+        System.out.println("Added all libraries' info");
 
         LibraryOrganizer libOrg = new LibraryOrganizer(days, books, libraries);
-
-        int[] signupDays = libOrg.organizeSignupDays();
-
-
-        PrintWriter writer = new PrintWriter("resultFile.txt");
         
+        int[] signupDays = libOrg.organizeSignupDays();
+        System.out.println("Organized all library b signup days");
 
+        File filename = new File("resultFile_" + name + ".txt");
+        PrintWriter writer = new PrintWriter(filename);        
+
+        System.out.println("Beginning to write...");
         // Number of libraries
         writer.println(numOfLibraries);
 
@@ -80,7 +93,7 @@ public class BookScanning {
             Scanner input = new Scanner(System.in);
 
             // Change as nessessary
-            File file = new File("b");
+            File file = new File(name + ".txt");
             input = new Scanner(file);
 
             return input;
@@ -112,9 +125,9 @@ public class BookScanning {
 
         result.close();
 
-        // System.out.println("Books: " + info[0]);
-        // System.out.println("Libraries: " + info[1]);
-        // System.out.println("Days: " + info[2]);
+        System.out.println("Books: " + info[0]);
+        System.out.println("Libraries: " + info[1]);
+        System.out.println("Days: " + info[2]);
 
         return info;
 
