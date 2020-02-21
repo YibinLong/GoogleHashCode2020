@@ -34,17 +34,52 @@ public class BookScanning {
         int numOfLibraries = info[1];
         int days = info[2];
 
-        for (int i = 0; i < numOfLibraries; i++) {
-            libraries.add(getLibInfo(i));
+        // for (int i = 0; i < numOfLibraries; i++) {
+        //     libraries.add(getLibInfo(i));
 
-            System.out.println(i + " out of " + numOfLibraries + " finished processing");           
+        //     System.out.println(i + " out of " + numOfLibraries + " finished processing");           
 
-            // System.out.println("lib id: " + libraries.get(i).getID());
-            // System.out.println("first book: " + libraries.get(i).getBooks().get(0).getID());
-            // System.out.println("second book: " + libraries.get(i).getBooks().get(1).getID());
-            // System.out.println("third book: " + libraries.get(i).getBooks().get(2).getID());
+        //     // System.out.println("lib id: " + libraries.get(i).getID());
+        //     // System.out.println("first book: " + libraries.get(i).getBooks().get(0).getID());
+        //     // System.out.println("second book: " + libraries.get(i).getBooks().get(1).getID());
+        //     // System.out.println("third book: " + libraries.get(i).getBooks().get(2).getID());
+
+        // }
+
+        Scanner result = readLine();
+        
+        //Scanner result = readLine();
+        result.nextLine();
+        result.nextLine();
+
+        for(int i = 0; i < numOfLibraries; i++){
+
+            int libID = i;
+
+            String libLine = result.nextLine();
+            String[] libInfo = libLine.split(" ");
+            
+            int numOfSignupDays = Integer.parseInt(libInfo[1]);
+            int numOfBooksPerDay = Integer.parseInt(libInfo[2]);
+    
+            String booksLine = result.nextLine();
+            String[] booksInfo = booksLine.split(" ");
+
+            ArrayList<Book> libBooks = new ArrayList<Book>();
+
+            for (int j = 0; j < booksInfo.length; j++) {
+                libBooks.add(new Book(Integer.parseInt(booksInfo[j])));
+            }
+    
+            Library newLib = new Library(libID, numOfSignupDays, numOfBooksPerDay, libBooks);
+            libraries.add(newLib);     
+            
+            System.out.println(i + " out of " + numOfLibraries + " finished processing");                  
 
         }
+
+        result.close();        
+
         System.out.println("Added all libraries' info");
 
         LibraryOrganizer libOrg = new LibraryOrganizer(days, books, libraries);
@@ -113,6 +148,7 @@ public class BookScanning {
     // 1: Number of libraries
     // 2: Number of days for scanning
     static int[] basicInfo() {
+
         Scanner result = readLine();
         String firstLine = result.nextLine();
 
@@ -173,9 +209,17 @@ public class BookScanning {
         int numOfSignupDays = Integer.parseInt(libInfo[1]);
         int numOfBooksPerDay = Integer.parseInt(libInfo[2]);
 
-        ArrayList<Book> libBooks = getBooks(ID + 1);
+        String booksLine = result.nextLine();
+        String[] booksInfo = booksLine.split(" ");
+
+        ArrayList<Book> libBooks = new ArrayList<Book>();
+
+        for (int i = 0; i < booksInfo.length; i++) {
+            libBooks.add(new Book(Integer.parseInt(booksInfo[i])));
+        }
 
         Library newLib = new Library(libID, numOfSignupDays, numOfBooksPerDay, libBooks);
+        result.close();
         return newLib;
     }
 

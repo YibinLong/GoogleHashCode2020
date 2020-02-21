@@ -44,7 +44,6 @@ public class LibraryOrganizer {
                 }
             }
 
-
             Library temp = libraries.get(i);
 
             libraries.set(i, libraries.get(position));
